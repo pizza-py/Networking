@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.23)
 project(Networking)
 
 add_executable(main)
-
+add_executable(serverTest)
 
 target_sources(main
         PRIVATE
