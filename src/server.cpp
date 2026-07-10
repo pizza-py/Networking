@@ -3,20 +3,25 @@
 //
 
 #include "../include/acceptor.h"
-#include <sys/types.h>
+#include "../include/connection.h"
 #include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <unistd.h>
 #include <iostream>
 
 int main() {
-    net::acceptor myAcceptor = net::acceptor("6768");
-    int client = myAcceptor.blockingAccept();
+    net::acceptor myAcceptor = net::acceptor("6767");
+    net::connection client = myAcceptor.blockingAccept();
+    net::RecvData incoming = client.connectionReceive();
 
+    std::cout << incoming.msg << std::endl;
+
+    std::cout << client.connectionSend("HTTP/1.1 200 OK\r\n"
+    "Content-Type: text/plain\r\n"
+    "\r\n"
+    "You have connected with the bestest most awsomest server in the world!!!\n") << std::endl;
+
+    /*
     char buffer[4096];
-    int bytesRead = recv(client, buffer, sizeof(buffer)-1, 0);
+    int bytesRead = recv(client.connectionSocket, buffer, sizeof(buffer)-1, 0);
 
     if (bytesRead == -1) {
         std::cout << "Error occurred in reading packets" << std::endl;
@@ -30,9 +35,8 @@ int main() {
     "Content-Type: text/plain\r\n"
     "\r\n"
     "Hello, world!";
-        send(client, response, bytesRead+1, 0);
+        send(client.connectionSocket, response, bytesRead+1, 0);
     }
-    close(client);
-    myAcceptor.stop();
+    */
     return 0;
 }

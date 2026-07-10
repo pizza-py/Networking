@@ -2,7 +2,7 @@
 // Created by David Sorinola on 08/07/2026.
 //
 
-#include "acceptor.h"
+#include "../include/acceptor.h"
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -10,9 +10,10 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <iostream>
+#include "../include/connection.h"
 
 namespace net {
-    acceptor::acceptor(std::string port) {
+    acceptor::acceptor(std::string_view port) {
         struct addrinfo hints;
         struct addrinfo *res;
         memset(&hints, 0, sizeof(hints));
@@ -22,7 +23,7 @@ namespace net {
         hints.ai_protocol = 0;
         hints.ai_flags = AI_PASSIVE;
 
-        int status = getaddrinfo(nullptr, port.c_str(), &hints, &res);
+        int status = getaddrinfo(nullptr, port.data(), &hints, &res);
 
         for (struct addrinfo *cur = res; cur != nullptr; cur = cur->ai_next) {
             int sockfd = socket(cur->ai_family, cur->ai_socktype, cur->ai_protocol);
@@ -42,9 +43,10 @@ namespace net {
 
         std::cerr << "Failed to bind to socket." << std::endl;
         this->acceptorSocket = -1;
+        freeaddrinfo(res);
     }
 
-    int acceptor::blockingAccept() {
+    net::connection acceptor::blockingAccept() {
         struct sockaddr_storage incomingInfo;
         socklen_t incomingInfoSize = sizeof(incomingInfo);
         memset(&incomingInfo, 0, sizeof(incomingInfo));
@@ -53,13 +55,13 @@ namespace net {
 
         if (clientSocket == -1) {
             std::cerr << "Error occured in accepting client" << std::endl;
-            return -1;
+            return net::connection();
         } else {
-            return clientSocket;
+            return net::connection(clientSocket);
         }
     }
 
-    int acceptor::stop() {
-        return close(this->acceptorSocket);
+    acceptor::~acceptor() {
+        close(this->acceptorSocket);
     }
 }

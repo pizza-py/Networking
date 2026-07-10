@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.23)
 project(Networking)
 
 add_executable(main)
-add_executable(serverTest)
+add_executable(serverTest
+        src/connection.cpp
+        include/connection.h)
 
 target_sources(main
         PRIVATE
@@ -11,4 +13,4 @@ target_sources(main
 target_sources(serverTest
         PRIVATE
         src/server.cpp
-        include/acceptor.cpp)
+        src/acceptor.cpp)

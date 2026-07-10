@@ -6,17 +6,19 @@
 #define NETWORKING_ACCEPTOR_H
 
 #include <string>
+#include "connection.h"
+
 namespace net {
     class acceptor {
 
     public: int acceptorSocket;
 
     public:
-        acceptor(std::string port);
+        acceptor(std::string_view port);
 
-        int blockingAccept();
+        net::connection blockingAccept();
 
-        int stop();
+        ~acceptor();
     };
 }
 #endif //NETWORKING_ACCEPTOR_H
