@@ -27,15 +27,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Pushing everything to Github">
-      <changelist_data name="David" email="tanidt2@outlook.com" automatic="false" />
-      <change afterPath="$PROJECT_DIR$/include/connection.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Created connection class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/acceptor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/acceptor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/acceptor.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/acceptor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/connection.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +141,7 @@
       <workItem from="1783534957887" duration="2535000" />
       <workItem from="1783538691581" duration="48000" />
       <workItem from="1783538740900" duration="24000" />
-      <workItem from="1783538781152" duration="20507000" />
+      <workItem from="1783538781152" duration="59767000" />
     </task>
     <task id="LOCAL-00001" summary="Starting out:&#10;&#10;- Initialised the project">
       <option name="closed" value="true" />
@@ -180,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783534180514</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Created connection class">
+      <option name="closed" value="true" />
+      <created>1783692880026</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1783692880026</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +210,8 @@
     <MESSAGE value="Created a quick model of a TCP receiver:&#10;&#10;- It receives one thing from one client and nothing else" />
     <MESSAGE value="Generalised the TCP server to net::acceptor. For now, this abstracts a lot of the low level stuff away leaving a nice object oriented interface, although we still do need to call things like recv and close." />
     <MESSAGE value="Pushing everything to Github" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pushing everything to Github" />
+    <MESSAGE value="Created connection class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created connection class" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

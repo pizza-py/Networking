@@ -26,7 +26,6 @@ namespace net {
     }
 
     int connection::connectionSend(const std::string_view msg){
-        std::cout << msg.length() << std::endl;
         return send(this->connectionSocket, msg.data(), msg.length(), 0);
     }
 
