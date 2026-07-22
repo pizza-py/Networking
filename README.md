@@ -37,11 +37,11 @@ To contain examples that I build with my networking library.
 ### Socket level
 
 I first learned the basics of the TCP protocol and the processes happening under the hood, before getting my hands dirty by building client server logic for a single user.
-I didn't like the C-esque functional interface that I had to use, and thus I wanted to abstract a lot of the low level details away, leaving a more object oriented interface at the surface.
+I didn't like the functional interface that I had to use, and thus I wanted to abstract a lot of the low level details away, leaving a more object oriented interface at the surface.
 
 I created `net::acceptor` as a wrapper around a socket which listens on a port and accepts connection requests. A programmer would only need to specify what port its listening on, and call `acceptor.blockingAccept()` to establish a connection with a client.
 A connection is encapsulated by `net::connection`. It maintains a connection handle, and allows us to send and receive data easily. I package the received data from a connection handle in a `struct RecvData` which stores lots of useful information.
 
 With this we can start to build some synchronous networking systems, like servers which handle a single client at a time.
 
-The next issue is that certain calls like `accept()` and `recv()` are blocking.
+Right now, functions like `accept()` and `recv()` are blocking.

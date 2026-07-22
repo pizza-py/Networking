@@ -9,24 +9,50 @@
 #include <sys/socket.h>
 #include <memory>
 #include <unistd.h>
+#include <fcntl.h>
 
 namespace net {
     RecvData::RecvData(std::string x, int y, bool z) : msg(x), bytesRead(y), closed(z){}
 
-    connection::connection(int handle) {
-        this->connectionSocket = handle;
+    connection::connection(int handle) : connectionSocket(handle), blocking(true){}
+
+    connection::connection() : connectionSocket(-1), blocking(true){}
+
+    int connection::getConnectionSocket() {
+        return this->connectionSocket;
     }
 
-    connection::connection() {
-        this->connectionSocket = -1;
+    bool connection::isBlocking() {
+        return this->blocking;
     }
 
-    bool connection::valid() {
-        return !(this->connectionSocket == -1);
+    void connection::setBlocking(bool setBlockingTo) {
+        if (setBlockingTo == true) {
+            fcntl(this->connectionSocket, F_SETFL, 0);
+            this->blocking = true;
+        } else {
+            fcntl(this->connectionSocket,F_SETFL, O_NONBLOCK);
+            this->blocking = false;
+        }
     }
 
-    int connection::connectionSend(const std::string_view msg){
-        return send(this->connectionSocket, msg.data(), msg.length(), 0);
+
+    bool connection::valid() { return !(this->connectionSocket == -1);}
+
+    int connection::connectionSend(std::string_view msg){
+        int bytesLeft = msg.length();
+        int total = msg.length();
+        const char* buffer = msg.data();
+        int numberSent;
+        while (bytesLeft > 0) {
+            numberSent = send(this->connectionSocket, buffer + (total-bytesLeft), bytesLeft, 0);
+            if (numberSent == -1) {
+                return -1;
+            } else {
+                bytesLeft -= numberSent;
+            }
+        }
+        return total - bytesLeft;
     }
 
     RecvData connection::connectionReceive(int bufferSize) {

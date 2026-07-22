@@ -15,11 +15,21 @@ namespace net {
         RecvData(std::string, int, bool);
     };
     class connection {
-    public: int connectionSocket;
+    private:
+        int connectionSocket;
+        bool blocking;
+
+    public:
 
         connection(int handle);
 
         connection();
+
+        int getConnectionSocket();
+
+        bool isBlocking();
+
+        void setBlocking(bool);
 
         bool valid();
 

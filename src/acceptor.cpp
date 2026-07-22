@@ -11,11 +11,13 @@
 #include <unistd.h>
 #include <iostream>
 #include "../include/connection.h"
+#include <fcntl.h>
 
 namespace net {
-    acceptor::acceptor(std::string_view port) {
-        struct addrinfo hints;
-        struct addrinfo *res;
+    acceptor::acceptor(const std::string_view port) {
+        this->blocking = true;
+        addrinfo hints;
+        addrinfo *res;
         memset(&hints, 0, sizeof(hints));
 
         hints.ai_family = AF_UNSPEC;
@@ -25,16 +27,19 @@ namespace net {
 
         int status = getaddrinfo(nullptr, port.data(), &hints, &res);
 
-        for (struct addrinfo *cur = res; cur != nullptr; cur = cur->ai_next) {
+        for (addrinfo *cur = res; cur != nullptr; cur = cur->ai_next) {
             int sockfd = socket(cur->ai_family, cur->ai_socktype, cur->ai_protocol);
 
             std::cout << sockfd << std::endl;
             if (sockfd != -1) {
+                int opt = 1;
+                setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &opt , sizeof(opt));
                 int bindStatus = bind(sockfd, cur->ai_addr, cur->ai_addrlen);
                 std::cout << bindStatus << std::endl;
                 if (bindStatus != -1) {
                     this->acceptorSocket = sockfd;
                     listen(sockfd, 10);
+                    freeaddrinfo(res);
                     return;
                 }
             }
@@ -46,8 +51,10 @@ namespace net {
         freeaddrinfo(res);
     }
 
-    net::connection acceptor::blockingAccept() {
-        struct sockaddr_storage incomingInfo;
+
+
+    net::connection acceptor::acceptConnection() {
+        sockaddr_storage incomingInfo;
         socklen_t incomingInfoSize = sizeof(incomingInfo);
         memset(&incomingInfo, 0, sizeof(incomingInfo));
 
@@ -61,7 +68,27 @@ namespace net {
         }
     }
 
+    bool acceptor::isBlocking() {
+        return this->blocking;
+    }
+
+    void acceptor::setBlocking(bool setBlockingTo) {
+        if (setBlockingTo == true) {
+            fcntl(this->acceptorSocket, F_SETFL, 0);
+            this->blocking = true;
+        } else {
+            fcntl(this->acceptorSocket,F_SETFL, O_NONBLOCK);
+            this->blocking = false;
+        }
+    }
+
+    int acceptor::getAcceptorSocket() {
+        return this->acceptorSocket;
+    }
+
+
     acceptor::~acceptor() {
         close(this->acceptorSocket);
     }
+
 }
