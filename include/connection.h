@@ -27,6 +27,8 @@ namespace net {
 
         int getConnectionSocket();
 
+        void setConnectionSocket(int);
+
         bool isBlocking();
 
         void setBlocking(bool);
@@ -36,6 +38,14 @@ namespace net {
         int connectionSend(std::string_view msg);
 
         RecvData connectionReceive(int bufferSize=4096);
+
+        connection(const connection&) = delete;
+
+        connection& operator=(const connection&) = delete;
+
+        connection(connection&&);
+
+        connection& operator=(connection&&);
 
         ~connection();
     };

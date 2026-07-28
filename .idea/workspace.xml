@@ -28,17 +28,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Cleaning up">
-      <change afterPath="$PROJECT_DIR$/examples/pollServer.cpp" afterDir="false" />
+    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Got started on the poll server. NEED TO FIX addConnection() because it's doing some funky stuff.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/pollServer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/pollServer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/acceptor.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/acceptor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/connection.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/connection.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/acceptor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/acceptor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/plainBlockingServer.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +143,7 @@
       <workItem from="1783538691581" duration="48000" />
       <workItem from="1783538740900" duration="24000" />
       <workItem from="1783538781152" duration="87924000" />
-      <workItem from="1784736409482" duration="8483000" />
+      <workItem from="1784736409482" duration="40008000" />
     </task>
     <task id="LOCAL-00001" summary="Starting out:&#10;&#10;- Initialised the project">
       <option name="closed" value="true" />
@@ -196,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784552038409</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Got started on the poll server. NEED TO FIX addConnection() because it's doing some funky stuff.">
+      <option name="closed" value="true" />
+      <created>1784746879669</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1784746879669</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +230,8 @@
     <MESSAGE value="Pushing everything to Github" />
     <MESSAGE value="Created connection class" />
     <MESSAGE value="Cleaning up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaning up" />
+    <MESSAGE value="Got started on the poll server. NEED TO FIX addConnection() because it's doing some funky stuff." />
+    <option name="LAST_COMMIT_MESSAGE" value="Got started on the poll server. NEED TO FIX addConnection() because it's doing some funky stuff." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

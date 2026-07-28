@@ -26,7 +26,19 @@ namespace net {
 
         int getAcceptorSocket();
 
+        void setAcceptorSocket(int);
+
+        acceptor(const acceptor&) = delete;
+
+        acceptor& operator=(const acceptor&) = delete;
+
+        acceptor(acceptor&&);
+
+        acceptor& operator=(acceptor&&);
+
         ~acceptor();
+
+
 
     };
 }

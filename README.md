@@ -41,7 +41,15 @@ I didn't like the functional interface that I had to use, and thus I wanted to a
 
 I created `net::acceptor` as a wrapper around a socket which listens on a port and accepts connection requests. A programmer would only need to specify what port its listening on, and call `acceptor.blockingAccept()` to establish a connection with a client.
 A connection is encapsulated by `net::connection`. It maintains a connection handle, and allows us to send and receive data easily. I package the received data from a connection handle in a `struct RecvData` which stores lots of useful information.
+Through creating these classes, I learnt a lot about concepts like RAII, dynamic allocation, smart pointers and so on. 
 
-With this we can start to build some synchronous networking systems, like servers which handle a single client at a time.
+With this we can start to build some synchronous networking systems, like servers which handle a single client at a time. I created `plainBlockingServer.cpp`, which waits for a connection with some client and exchanges messages.
 
-Right now, functions like `accept()` and `recv()` are blocking.
+### Async
+
+Right now, functions like `accept()` and `recv()` are blocking. This is fixed with a simple call to `fcntl()` to stop the sockets from blocking. From here, I can begin to investigate different asynchronous programming techniques.
+
+#### poll()
+The first technique I wanted to try was the `poll()` system call. We pass it an array `pollfd[]`, which is an array objects which encapsulate polling information about file descriptors. The function blocks until one or more events are detected. This information is written to the `pollfd.revents` field in each object, and we can iterate through the array, handling the events appropriately. 
+
+I established my main event loop and delegated handling to specific functions, and I found it was more difficult than expected to integrate my object oriented interface. I ran into several problems, most notably to do with maintaining some collection of all open connections. My `acceptor.acceptConnection()` function returned a connection object, which owns its corresponding socket and closes it once the object goes out of scope.  

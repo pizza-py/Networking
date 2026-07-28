@@ -7,20 +7,22 @@
 #include <poll.h>
 #include <vector>
 #include <iostream>
+#include <memory>
+#include <utility>
 
 void addConnection(std::vector<pollfd>& fds, net::acceptor& myAcceptor, std::vector<net::connection>& connections) {
-    net::connection connection= myAcceptor.acceptConnection();
+    net::connection connection = myAcceptor.acceptConnection();
+    connection.setBlocking(false);
     std::cout << "Added connection: " << connection.getConnectionSocket() << std::endl;
     pollfd connectionPollFd = pollfd();
     connectionPollFd.events = POLLIN | POLLHUP;
     connectionPollFd.fd = connection.getConnectionSocket();
     fds.push_back(connectionPollFd);
-    connections.push_back(connection);
+    connections.push_back(std::move(connection));
 }
 
 void handleClient(std::vector<pollfd>& fds, std::vector<net::connection>& connections, int connectionIndex) {
-    net::connection connection = connections[connectionIndex];
-    net::RecvData incoming = connection.connectionReceive();
+    net::RecvData incoming = connections[connectionIndex].connectionReceive();
     if (incoming.closed) {
         std::cout << "A connection closed!" << std::endl;
         fds.erase(fds.begin()+connectionIndex+1);

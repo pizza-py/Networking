@@ -86,9 +86,28 @@ namespace net {
         return this->acceptorSocket;
     }
 
+    void acceptor::setAcceptorSocket(int x) {
+        this->acceptorSocket = x;
+    }
+
+    acceptor::acceptor(acceptor&& rhs) {
+        this->setAcceptorSocket(rhs.getAcceptorSocket());
+        this->setBlocking(rhs.isBlocking());
+        rhs.setAcceptorSocket(-1);
+    }
+
+    acceptor &acceptor::operator=(acceptor&& rhs) {
+        this->setAcceptorSocket(rhs.getAcceptorSocket());
+        this->setBlocking(rhs.isBlocking());
+        rhs.setAcceptorSocket(-1);
+        return *this;
+    }
+
 
     acceptor::~acceptor() {
-        close(this->acceptorSocket);
+        if (this->acceptorSocket != -1) {
+            close(this->acceptorSocket);
+        }
     }
 
 }

@@ -22,6 +22,11 @@ namespace net {
         return this->connectionSocket;
     }
 
+    void connection::setConnectionSocket(int x) {
+        this->connectionSocket = x;
+    }
+
+
     bool connection::isBlocking() {
         return this->blocking;
     }
@@ -69,8 +74,24 @@ namespace net {
         }
     }
 
+    connection::connection(connection&& rhs) {
+        this->setConnectionSocket(rhs.getConnectionSocket());
+        this->setBlocking(rhs.isBlocking());
+        rhs.setConnectionSocket(-1);
+    }
+
+    connection& connection::operator=(connection&& rhs) {
+        this->setConnectionSocket(rhs.getConnectionSocket());
+        this->setBlocking(rhs.isBlocking());
+        rhs.setConnectionSocket(-1);
+        return *this;
+    }
+
+
     connection::~connection() {
-        close(this->connectionSocket);
+        if (this->connectionSocket != -1) {
+            close(this->connectionSocket);
+        }
     }
 
 }
