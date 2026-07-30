@@ -7,7 +7,6 @@
 #include <poll.h>
 #include <vector>
 #include <iostream>
-#include <memory>
 #include <utility>
 
 void addConnection(std::vector<pollfd>& fds, net::acceptor& myAcceptor, std::vector<net::connection>& connections) {
@@ -21,37 +20,33 @@ void addConnection(std::vector<pollfd>& fds, net::acceptor& myAcceptor, std::vec
     connections.push_back(std::move(connection));
 }
 
-void handleClient(std::vector<pollfd>& fds, std::vector<net::connection>& connections, int connectionIndex) {
+int handleClient(std::vector<pollfd>& fds, std::vector<net::connection>& connections, int connectionIndex) {
     net::RecvData incoming = connections[connectionIndex].connectionReceive();
     if (incoming.closed) {
         std::cout << "A connection closed!" << std::endl;
         fds.erase(fds.begin()+connectionIndex+1);
         connections.erase(connections.begin()+connectionIndex);
+        return 1;
     } else {
+        std::cout << "Received data:" << std::endl << incoming.msg << "Sending to all connections..." << std::endl;
         for (int i=0;i<connections.size();i++) {
             if (i != connectionIndex) {
-                std::cout << "Received data, sending to all connections..." << std::endl;
                 connections[i].connectionSend(incoming.msg);
             }
         }
+        return 0;
     }
 }
 
 void handleEvents(std::vector<pollfd>& fds, net::acceptor& myAcceptor, std::vector<net::connection>& connections) {
     for (int i=0; i<fds.size();i++) {
         pollfd cur = fds.at(i);
-        std::cout << "Investigating: " << cur.fd << std::endl;
-        std::cout << "Its revents is: " << cur.revents << std::endl;
         if (cur.revents & (POLLIN | POLLHUP)) {
             if (cur.fd == myAcceptor.getAcceptorSocket()) {
-                std::cout << "An event happened with the acceptor." << std::endl;
                 addConnection(fds, myAcceptor, connections);
             } else {
-                std::cout << "An event happened with a client." << std::endl;
-                handleClient(fds, connections, i-1);
+                 i -= handleClient(fds, connections, i-1);
             }
-        } else {
-            std::cout << "Nothing happened with this socket." << std::endl;
         }
     }
 }
@@ -75,8 +70,6 @@ int main() {
             std::cerr << "Error occured while polling" << std::endl;
             return 1;
         } else {
-            std::cout << "Handling " << numEvents
-            << " events" << std::endl;
             handleEvents(fds,myAcceptor, connections);
         }
     }
