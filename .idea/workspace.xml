@@ -19,6 +19,7 @@
     <generated>
       <config projectName="Networking" targetName="serverTest" />
       <config projectName="Networking" targetName="pollServerTest" />
+      <config projectName="Networking" targetName="httpTest" />
       <config projectName="Networking" targetName="main" />
     </generated>
   </component>
@@ -28,9 +29,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Poll server works! &#10;Also added more to README.md&#10;Maybe next I can abstract it away into some server object&#10;&#10;Modifying the vector while looping through it is quite dangerous: make sure to come up with a solution">
+    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Added to pollServer.cpp">
+      <change afterPath="$PROJECT_DIR$/examples/httpMain.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/http/parsing.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/http/request.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/parsing.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/request.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/pollServer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/pollServer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/connection.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/connection.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,20 +101,25 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.inline.completion&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/examples" />
       <recent name="$PROJECT_DIR$/include" />
+      <recent name="$PROJECT_DIR$/examples" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.pollServerTest">
+  <component name="RunManager" selected="CMake Application.httpTest">
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Networking" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Networking" RUN_TARGET_NAME="main">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="httpTest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Networking" TARGET_NAME="httpTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Networking" RUN_TARGET_NAME="httpTest">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -122,6 +135,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="CMake Application.httpTest" />
       <item itemvalue="CMake Application.pollServerTest" />
       <item itemvalue="CMake Application.serverTest" />
     </list>
@@ -138,7 +152,9 @@
       <workItem from="1783538691581" duration="48000" />
       <workItem from="1783538740900" duration="24000" />
       <workItem from="1783538781152" duration="87924000" />
-      <workItem from="1784736409482" duration="46353000" />
+      <workItem from="1784736409482" duration="67771000" />
+      <workItem from="1785858584116" duration="7598000" />
+      <workItem from="1785870392582" duration="3066000" />
     </task>
     <task id="LOCAL-00001" summary="Starting out:&#10;&#10;- Initialised the project">
       <option name="closed" value="true" />
@@ -204,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785262411190</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added to pollServer.cpp">
+      <option name="closed" value="true" />
+      <created>1785427313060</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1785427313060</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,7 +259,8 @@
     <MESSAGE value="Cleaning up" />
     <MESSAGE value="Got started on the poll server. NEED TO FIX addConnection() because it's doing some funky stuff." />
     <MESSAGE value="Poll server works! &#10;Also added more to README.md&#10;Maybe next I can abstract it away into some server object&#10;&#10;Modifying the vector while looping through it is quite dangerous: make sure to come up with a solution" />
-    <option name="LAST_COMMIT_MESSAGE" value="Poll server works! &#10;Also added more to README.md&#10;Maybe next I can abstract it away into some server object&#10;&#10;Modifying the vector while looping through it is quite dangerous: make sure to come up with a solution" />
+    <MESSAGE value="Added to pollServer.cpp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added to pollServer.cpp" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

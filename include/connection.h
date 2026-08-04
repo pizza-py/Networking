@@ -14,10 +14,13 @@ namespace net {
 
         RecvData(std::string, int, bool);
     };
+
+
     class connection {
     private:
         int connectionSocket;
         bool blocking;
+
 
     public:
 

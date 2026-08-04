@@ -7,6 +7,15 @@ add_executable(serverTest
         src/connection.cpp
 )
 
+add_executable(httpTest
+        examples/httpMain.cpp
+        http/request.cpp
+        src/acceptor.cpp
+        src/connection.cpp
+        http/parsing.cpp
+        include/parsing.h
+)
+
 add_executable(pollServerTest
         src/acceptor.cpp
         src/connection.cpp
