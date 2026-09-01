@@ -14,6 +14,8 @@ add_executable(httpTest
         src/connection.cpp
         http/parsing.cpp
         include/parsing.h
+        http/response.cpp
+        include/response.h
 )
 
 add_executable(pollServerTest

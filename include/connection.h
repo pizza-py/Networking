@@ -20,6 +20,7 @@ namespace net {
     private:
         int connectionSocket;
         bool blocking;
+        std::string buffer;
 
 
     public:
@@ -38,9 +39,15 @@ namespace net {
 
         bool valid();
 
-        int connectionSend(std::string_view msg);
+        int connectionSend(std::string msg);
 
         RecvData connectionReceive(int bufferSize=4096);
+
+        std::string getBuffer();
+
+        void addToBuffer(std::string);
+
+        void clearBuffer();
 
         connection(const connection&) = delete;
 

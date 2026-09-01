@@ -19,9 +19,10 @@ namespace http {
         string accept;
         string connection;
         bool valid;
+        int failCode;
 
     public:
-        HTTPRequest(string_view = "", string_view="", string_view ="", string_view ="", string_view ="", string_view="", string_view = "");
+        HTTPRequest(string = "", string="", string ="", string ="", string ="", string="", string = "");
 
         HTTPRequest(int fail);
 
@@ -47,6 +48,8 @@ namespace http {
         void setConnection(string x);
 
         bool getValid();
+
+        int getFailCode();
     };
 }
 

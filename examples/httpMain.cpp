@@ -6,6 +6,8 @@
 #include <string>
 #include "../include/connection.h"
 #include "../include/acceptor.h"
+#include "../include/parsing.h"
+#include "../include/response.h"
 
 int main() {
     net::acceptor myAcceptor = net::acceptor("6767");
@@ -23,9 +25,19 @@ int main() {
                 stayInLoop = false;
             } else {
                 std::cout << incoming.msg << std::endl;
-                size_t pos = incoming.msg.find("bababooey");
-
-                std::cout << incoming.msg.substr(0,pos) << std::endl;
+                incoming.msg.erase(incoming.msg.end()-4, incoming.msg.end());
+                http::HTTPRequest myRequest = http::parseHTTP(incoming.msg);
+                if (!myRequest.getValid()) {
+                    std::cerr << "Failed to Parse HTTP. Error code: " << myRequest.getFailCode() << std::endl;
+                } else {
+                    std::cout << "Formulating response:" << std::endl;
+                    http::response myResponse = http::response();
+                    myResponse.setServer("My awsome server");
+                    myResponse.setContent("Super califragilistics expialadocious");
+                    std::cout << "Made the response object!" << std::endl;
+                    std::cout << "Sending: "<<  myResponse.buildResponse() << std::endl;
+                    client.connectionSend(myResponse);
+                }
             }
         }
     }

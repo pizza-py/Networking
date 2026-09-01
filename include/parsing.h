@@ -9,9 +9,9 @@
 #include <vector>
 
 namespace http {
-    std::vector<string_view> split(string_view, string_view);
+    std::vector<string> split(string, string);
 
-    HTTPRequest parseHTTP(string_view);
+    HTTPRequest parseHTTP(string);
 }
 
 #endif //NETWORKING_PARSING_H

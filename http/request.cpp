@@ -7,9 +7,9 @@
 
 namespace http {
 
-    HTTPRequest::HTTPRequest(string_view method, string_view requestTarget, string_view protocol, string_view host, string_view userAgent, string_view accept, string_view connection) : method(method), requestTarget(requestTarget), protocol(protocol), host(host), userAgent(userAgent), accept(accept), connection(connection), valid(true) {}
+    HTTPRequest::HTTPRequest(string method, string requestTarget, string protocol, string host, string userAgent, string accept, string connection) : method(method), requestTarget(requestTarget), protocol(protocol), host(host), userAgent(userAgent), accept(accept), connection(connection), valid(true) {}
 
-    HTTPRequest::HTTPRequest(int fail) : valid(false) {}
+    HTTPRequest::HTTPRequest(int fail) : valid(false), failCode(fail) {}
 
 
     string HTTPRequest::getMethod() {return method;}
@@ -41,6 +41,9 @@ namespace http {
     void HTTPRequest::setConnection(string x) {connection = std::move(x);}
 
     bool HTTPRequest::getValid() {return valid;}
+
+    int HTTPRequest::getFailCode() {return failCode;}
+
 
 
 }

@@ -44,9 +44,9 @@ namespace net {
 
     bool connection::valid() { return !(this->connectionSocket == -1);}
 
-    int connection::connectionSend(std::string_view msg){
-        int bytesLeft = msg.length();
-        int total = msg.length();
+    int connection::connectionSend(std::string msg){
+        size_t bytesLeft = msg.length();
+        size_t total = msg.length();
         const char* buffer = msg.data();
         int numberSent;
         while (bytesLeft > 0) {
@@ -72,6 +72,18 @@ namespace net {
             default:
                 return RecvData(std::string(buffer.get(), bytesRead), bytesRead,false);
         }
+    }
+
+    std::string connection::getBuffer() {
+        return buffer;
+    }
+
+    void connection::addToBuffer(std::string x) {
+        buffer.append(x);
+    }
+
+    void connection::clearBuffer() {
+        buffer = "";
     }
 
     connection::connection(connection&& rhs) {

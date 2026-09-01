@@ -29,16 +29,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Added to pollServer.cpp">
-      <change afterPath="$PROJECT_DIR$/examples/httpMain.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/parsing.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/request.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/parsing.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/request.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Did stuff">
+      <change afterPath="$PROJECT_DIR$/http/response.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/response.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/httpMain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/httpMain.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/parsing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/http/parsing.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/http/request.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/connection.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/connection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/parsing.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/parsing.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/request.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/request.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/connection.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +84,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;C/C++ File.server.cpp.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Application.httpTest.executor&quot;: &quot;Run&quot;,
     &quot;CMake Application.main.executor&quot;: &quot;Run&quot;,
     &quot;CMake Application.serverTest.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
@@ -114,6 +116,11 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.httpTest">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Networking" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Networking" RUN_TARGET_NAME="main">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -154,7 +161,9 @@
       <workItem from="1783538781152" duration="87924000" />
       <workItem from="1784736409482" duration="67771000" />
       <workItem from="1785858584116" duration="7598000" />
-      <workItem from="1785870392582" duration="3066000" />
+      <workItem from="1785870392582" duration="33738000" />
+      <workItem from="1787934996683" duration="3023000" />
+      <workItem from="1788281151122" duration="12000" />
     </task>
     <task id="LOCAL-00001" summary="Starting out:&#10;&#10;- Initialised the project">
       <option name="closed" value="true" />
@@ -228,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785427313060</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Starting work on the HTTP side">
+      <option name="closed" value="true" />
+      <created>1785874269579</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1785874269579</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,6 +268,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Starting out:&#10;&#10;- Initialised the project" />
     <MESSAGE value="Created a quick model of a TCP receiver:&#10;&#10;- It receives one thing from one client and nothing else" />
     <MESSAGE value="Generalised the TCP server to net::acceptor. For now, this abstracts a lot of the low level stuff away leaving a nice object oriented interface, although we still do need to call things like recv and close." />
@@ -260,7 +278,10 @@
     <MESSAGE value="Got started on the poll server. NEED TO FIX addConnection() because it's doing some funky stuff." />
     <MESSAGE value="Poll server works! &#10;Also added more to README.md&#10;Maybe next I can abstract it away into some server object&#10;&#10;Modifying the vector while looping through it is quite dangerous: make sure to come up with a solution" />
     <MESSAGE value="Added to pollServer.cpp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added to pollServer.cpp" />
+    <MESSAGE value="Starting work on the HTTP side" />
+    <MESSAGE value="Did stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Did stuff" />
+    <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
