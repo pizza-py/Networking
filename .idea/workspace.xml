@@ -35,8 +35,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Wrote some tests for the split function and HTTPParsing">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/tests.yaml" afterDir="false" />
+    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Added github actions">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/tests.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/tests.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -199,7 +199,7 @@
       <workItem from="1785858584116" duration="7598000" />
       <workItem from="1785870392582" duration="33738000" />
       <workItem from="1787934996683" duration="3023000" />
-      <workItem from="1788281151122" duration="31845000" />
+      <workItem from="1788281151122" duration="32482000" />
     </task>
     <task id="LOCAL-00001" summary="Starting out:&#10;&#10;- Initialised the project">
       <option name="closed" value="true" />
@@ -297,7 +297,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789745721024</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added github actions">
+      <option name="closed" value="true" />
+      <created>1789747103809</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1789747103809</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +342,8 @@
     <MESSAGE value="Did stuff" />
     <MESSAGE value="Did stuff. Can now parse HTTP requests and send HTTP responses" />
     <MESSAGE value="Wrote some tests for the split function and HTTPParsing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wrote some tests for the split function and HTTPParsing" />
+    <MESSAGE value="Added github actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added github actions" />
     <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
