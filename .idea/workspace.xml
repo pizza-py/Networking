@@ -35,12 +35,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Did stuff. Can now parse HTTP requests and send HTTP responses">
-      <change afterPath="$PROJECT_DIR$/tests/httpParsingTests.cpp" afterDir="false" />
+    <list default="true" id="fa2fc435-d506-425d-8ac0-4112260d7848" name="Changes" comment="Wrote some tests for the split function and HTTPParsing">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/tests.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/parsing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/http/parsing.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/http/request.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +199,7 @@
       <workItem from="1785858584116" duration="7598000" />
       <workItem from="1785870392582" duration="33738000" />
       <workItem from="1787934996683" duration="3023000" />
-      <workItem from="1788281151122" duration="30347000" />
+      <workItem from="1788281151122" duration="31845000" />
     </task>
     <task id="LOCAL-00001" summary="Starting out:&#10;&#10;- Initialised the project">
       <option name="closed" value="true" />
@@ -292,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1788281216070</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Wrote some tests for the split function and HTTPParsing">
+      <option name="closed" value="true" />
+      <created>1789745721024</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1789745721024</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +333,8 @@
     <MESSAGE value="Starting work on the HTTP side" />
     <MESSAGE value="Did stuff" />
     <MESSAGE value="Did stuff. Can now parse HTTP requests and send HTTP responses" />
-    <option name="LAST_COMMIT_MESSAGE" value="Did stuff. Can now parse HTTP requests and send HTTP responses" />
+    <MESSAGE value="Wrote some tests for the split function and HTTPParsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wrote some tests for the split function and HTTPParsing" />
     <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

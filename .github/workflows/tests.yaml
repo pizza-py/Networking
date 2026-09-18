@@ -1,0 +1,18 @@
+on:
+  push:
+  pull_request:
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v5
+
+      - name: Configure CMake
+        run: cmake -S . -B build
+
+      - name: Build Tests
+        run: echo "Building Tests..."; cmake --build cmake-build-debug --target tests -j 10
+
+      - name: Run Tests
+        run: ./cmake-build-debug/tests
