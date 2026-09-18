@@ -112,7 +112,7 @@ TEST(HTTPParsingTests, HTTPGetRequest) {
     ASSERT_EQ(res.getHost(), "example.com");
     ASSERT_EQ(res.getUserAgent(), "somethingsomething");
     ASSERT_EQ(res.getAccept(), "*/*");
-    ASSERT_EQ(res.getConnection(), "keep-aliv");
+    ASSERT_EQ(res.getConnection(), "keep-alive");
     ASSERT_TRUE(res.getValid());
     ASSERT_EQ(res.getFailCode(), 0);
 }
